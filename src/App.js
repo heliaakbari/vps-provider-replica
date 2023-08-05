@@ -6,11 +6,12 @@ import LeftSideBar from './LeftSideBar';
 import NewInstanceForm from './NewInstanceForm';
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+
 function App() {
   return (
     <div className="App">
+      <CssBaseline />
       <Box sx={{ display: "flex" }}>
-        <CssBaseline />
         <LeftSideBar side="left" />
         <NewInstanceForm />
         <DeploySection />

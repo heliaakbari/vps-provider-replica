@@ -9,11 +9,13 @@ import Checkbox from "@mui/material/Checkbox";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
-import Grid from "@mui/material/Grid";
+import Avatar from "@mui/material/Avatar";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import PersonIcon from "@mui/icons-material/Person";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
-const drawerWidth = 315;
+const drawerWidth = 331;
 
 export default function DeploySection() {
   return (
@@ -26,7 +28,7 @@ export default function DeploySection() {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           boxSizing: "border-box",
-          borderWidth: 0,
+          borderWidth: " 0",
         },
         border: "none",
       }}
@@ -38,60 +40,92 @@ export default function DeploySection() {
         },
       }}
     >
-      <Toolbar sx={{ bgcolor: "white" }}>
+      <Toolbar
+        disableGutters
+        sx={{
+          bgcolor: "white",
+          display: "flex",
+          justifyContent: "flex-end",
+          flexDirection: "row",
+        }}
+      >
+        <NotificationsNoneIcon sx={{ fontSize: "24px" }} />
+        <Box
+          disableGutters
+          sx={{
+            w: "133px",
+            h: "36px",
+            display: "flex",
+            mx: "16px",
+            flexDirection: "row",
+            alignIt: "center",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "1px solid rgba(189, 189, 189, 1)",
+            borderRadius: "4px",
+          }}
+        >
+          <AddIcon sx={{ m: "8px" }} />
+          <Typography sx={{ width: "93px" }}>$ 125.50</Typography>
+        </Box>
+        <Divider orientation="vertical" variant="middle" flexItem />
+        <Avatar sx={{ bgcolor: "#BDBDBD", mr: "32px", ml: "16px" }}>
+          <PersonIcon sx={{fontSize:24, color:'white'}}/>
+        </Avatar>
       </Toolbar>
       <Divider />
       <Box
         sx={{
           mr: "32px",
+          ml: "16px",
           mt: 4,
           p: "20px",
           pt: "32px",
           bgcolor: "white",
+          borderRadius:'4px'
         }}
       >
-        <Typography>Instance quantity:</Typography>
+        <Typography variant="h7">Instance quantity:</Typography>
 
         <div
           style={{
             display: "flex",
-            alignItems: 'center',
+            alignItems: "center",
             justifyContent: "space-evenly",
             border: "1px solid #BDBDBD",
-            borderRadius:'4px',
-            width:'243px',
-            height:'40px'
+            borderRadius: "4px",
+            width: "243px",
+            height: "40px",
           }}
         >
-          <div>
-            <RemoveIcon/>
-          </div>
+          <RemoveIcon />
           <div
             style={{
               flexGrow: 1,
               textAlign: "center",
               borderRight: "1px solid #BDBDBD",
               borderLeft: "1px solid #BDBDBD",
-              maxWidth:'147px',
-              height:'40px',
-              display:'flex',
-              alignItems:'center',
-              justifyContent:'center'
+              maxWidth: "147px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Typography>3</Typography>
           </div>
-          <div>
-            <AddIcon />
-          </div>
+          <AddIcon />
         </div>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox defaultChecked size="small" />}
+            control={<Checkbox size="medium" />}
             label="Enable IPV4"
             sx={{
               my: "16px",
-              "& .MuiFormControlLabel-label": { fontSize: "16px" },
+              "& .MuiFormControlLabel-label": {
+                fontSize: "16px",
+                fontWeight: 400,
+              },
             }}
           />
         </FormGroup>
@@ -142,7 +176,6 @@ export default function DeploySection() {
             sx={{
               width: "243px",
               height: "40px",
-              bgcolor: "#00CD82",
               boxShadow: "none",
             }}
           >

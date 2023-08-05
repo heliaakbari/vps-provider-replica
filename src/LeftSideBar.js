@@ -23,6 +23,7 @@ import HeadphonesOutlinedIcon from "@mui/icons-material/HeadphonesOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import CloudzyLogo from "./CloudzyLogo";
 import Box from "@mui/material/Box";
+import { ThemeContext } from "@emotion/react";
 
 const drawerWidth = 220;
 
@@ -47,7 +48,7 @@ export default function LeftSideBar(props) {
       variant="permanent"
       anchor={props.side}
     >
-      <Toolbar sx={{display:'flex',justifyContent:'center'}}>
+      <Toolbar sx={{ display: "flex", justifyContent: "center" }}>
         <CloudzyLogo />
       </Toolbar>
       <Divider />
@@ -55,104 +56,101 @@ export default function LeftSideBar(props) {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                <DashboardOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding selected>
-            <ListItemButton>
-              <ListItemIcon>
-                <AddBoxOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Instances" />
+              <DashboardOutlinedIcon />
+              <ListItemText sx={{ ml: "8px" }} primary="Dashboard" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                <ContentCopyIcon />
-              </ListItemIcon>
-              <ListItemText primary="Snapshots" />
+              <AddBoxOutlinedIcon />
+              <ListItemText sx={{ ml: "8px" }} primary="Instances" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                <VpnKeyOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="SSH Keys" />
+              <ContentCopyIcon />
+
+              <ListItemText sx={{ ml: "8px" }} primary="Snapshots" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <VpnKeyOutlinedIcon />
+
+              <ListItemText sx={{ ml: "8px" }} primary="SSH Keys" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding disabled>
             <ListItemButton>
-              <ListItemIcon>
-                <DnsOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Volume" />
+              <DnsOutlinedIcon />
+              <ListItemText sx={{ ml: "8px" }} primary="Volume" />
             </ListItemButton>
           </ListItem>
         </List>
         <Divider />
-        </Box>
-        <List sx={{ pb: "20px" , px:'20px'}}>
-          <ListItemButton onClick={handleClick}>
-            <ListItemIcon>
-              <AttachMoneyOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Billing" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton disablePadding>
-                <ListItemIcon />
-                <ListItemText primary="Invoices" />
-              </ListItemButton>
-              <ListItemButton disablePadding>
-                <ListItemIcon />
-                <ListItemText primary="Payments" />
-              </ListItemButton>
-              <ListItemButton disablePadding>
-                <ListItemIcon />
-                <ListItemText primary="Transactions" />
-              </ListItemButton>
-            </List>
-          </Collapse>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <WifiOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Networking" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InsertDriveFileOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Report" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+      </Box>
+      <List sx={{ pb: "20px", px: "20px" }}>
+        <ListItemButton onClick={handleClick}>
+          <AttachMoneyOutlinedIcon />
 
-      <List style={{ marginTop: `auto` }} sx={{px:'20px', pb: "20px" }}>
-        <ListItem disablePadding sx={{ border: 1 }}>
+          <ListItemText sx={{ ml: "8px" }} primary="Billing" />
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItemButton disablePadding>
+              <ListItemText sx={{ ml: "30px" }} primary="Invoices" />
+            </ListItemButton>
+            <ListItemButton disablePadding>
+              <ListItemText sx={{ ml: "30px" }} primary="Payments" />
+            </ListItemButton>
+            <ListItemButton disablePadding>
+              <ListItemText sx={{ ml: "30px" }} primary="Transactions" />
+            </ListItemButton>
+          </List>
+        </Collapse>
+        <ListItem disablePadding>
           <ListItemButton>
-            <ListItemIcon>
-              <HeadphonesOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Support" />
+            <WifiOutlinedIcon />
+
+            <ListItemText sx={{ ml: "8px" }} primary="Networking" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding sx={{ border: 1, mt: "4px" }}>
+        <ListItem disablePadding>
           <ListItemButton>
-            <ListItemIcon>
-              <HelpOutlineIcon />
-            </ListItemIcon>
-            <ListItemText primary="Help" />
+            <InsertDriveFileOutlinedIcon />
+
+            <ListItemText sx={{ ml: "8px" }} primary="Report" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+
+      <List style={{ marginTop: `auto` }} sx={{ px: "20px", pb: "20px" }}>
+        <ListItem
+          disablePadding
+          sx={{
+            border: "1px solid rgba(189, 189, 189, 1)",
+            borderRadius: "4px",
+            height: 40,
+          }}
+        >
+          <ListItemButton>
+            <HeadphonesOutlinedIcon />
+
+            <ListItemText sx={{ ml: "8px" }} primary="Support" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem
+          disablePadding
+          sx={{
+            border: "1px solid rgba(189, 189, 189, 1)",
+            borderRadius: "4px",
+            mt: "4px",
+            height: 40,
+          }}
+        >
+          <ListItemButton>
+            <ListItemText sx={{ ml: "8px" }} primary="Help" />
           </ListItemButton>
         </ListItem>
       </List>
