@@ -1,11 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import Container from "@mui/material/Container";
 import BreadCrumbTop from "./BreadCrumbTop";
-import PlansList from "./plans";
+import PlanList from "./PlanList";
 
 export default function NewInstanceForm() {
   return (
@@ -29,7 +27,7 @@ export default function NewInstanceForm() {
           flexGrow: 1,
         }}
       >
-        <PlansList />
+        <PlanList />
       </Box>
     </Container>
   );
