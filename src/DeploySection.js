@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
@@ -15,9 +16,24 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import PersonIcon from "@mui/icons-material/Person";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
-const drawerWidth = 331;
+const drawerWidth = 315;
 
-export default function DeploySection() {
+export default function DeploySection({planPrice=10}) {
+  const [totalPrice, setTotalPrice] = useState(planPrice);
+  const [quantity, setQuantity] = useState(1);
+
+  function addQuantity() {
+    if (quantity <= 9) {
+      setQuantity(quantity + 1);
+    }
+  }
+
+  function minusQuantity() {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
+
   return (
     <Drawer
       sx={{
@@ -70,7 +86,7 @@ export default function DeploySection() {
         </Box>
         <Divider orientation="vertical" variant="middle" flexItem />
         <Avatar sx={{ bgcolor: "#BDBDBD", mr: "32px", ml: "16px" }}>
-          <PersonIcon sx={{fontSize:24, color:'white'}}/>
+          <PersonIcon sx={{ fontSize: 24, color: "white" }} />
         </Avatar>
       </Toolbar>
       <Divider />
@@ -82,7 +98,7 @@ export default function DeploySection() {
           p: "20px",
           pt: "32px",
           bgcolor: "white",
-          borderRadius:'4px'
+          borderRadius: "4px",
         }}
       >
         <Typography variant="h7">Instance quantity:</Typography>
@@ -91,35 +107,38 @@ export default function DeploySection() {
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-evenly",
+            justifyContent: "space-between",
             border: "1px solid #BDBDBD",
             borderRadius: "4px",
-            width: "243px",
+            width: "100%",
             height: "40px",
           }}
         >
-          <RemoveIcon />
+          <Button disableTouchRipple disableFocusRipple onClick={minusQuantity}>
+            <RemoveIcon onClick={minusQuantity} />
+          </Button>
           <div
             style={{
-              flexGrow: 1,
               textAlign: "center",
               borderRight: "1px solid #BDBDBD",
               borderLeft: "1px solid #BDBDBD",
-              maxWidth: "147px",
               height: "40px",
               display: "flex",
+              flexGrow: "1",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <Typography>3</Typography>
+            <Typography>{quantity}</Typography>
           </div>
-          <AddIcon />
+          <Button disableTouchRipple disableFocusRipple onClick={addQuantity}>
+            <AddIcon />
+          </Button>
         </div>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox size="medium" />}
-            label="Enable IPV4"
+            label="Enable IPv4"
             sx={{
               my: "16px",
               "& .MuiFormControlLabel-label": {
@@ -156,7 +175,7 @@ export default function DeploySection() {
               $
             </Typography>
             <Typography sx={{ fontSize: "24px", fontWeight: "500", px: "4px" }}>
-              13.49
+              {planPrice * quantity}
             </Typography>
             <Typography
               sx={{
@@ -170,13 +189,18 @@ export default function DeploySection() {
             </Typography>
           </Box>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Button
-            variant="contained"
             sx={{
               width: "243px",
               height: "40px",
               boxShadow: "none",
+              "&.MuiButton-root": { background:  "rgba(0, 205, 130, 1)" , color:'white' },
             }}
           >
             DEPLOY NOW

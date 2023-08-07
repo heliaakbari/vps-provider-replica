@@ -4,42 +4,40 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { findFlagUrlByCountryName } from "country-flags-svg";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
-const Item = styled(Button)(({}) => ({
+const Item = styled(Box)(({}) => ({
   textAlign: "center",
-  border: "1px solid rgba(0, 0, 0, 0.12)",
   borderRadius: "4px",
-  padding: 0,
-  height: "72px",
+  margin: "8px",
+  display: "flex",
+  flexDirection: "column",
   fontWeight: 500,
   fontSize: "16px",
-  display: "flex",
   alignItems: "center",
-  justifyContent: "left",
-  paddingLeft: "16px",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "0 16px",
   width: "100%",
   textTransform: "capitalize",
   color: "black",
 }));
 
-export default function Regions() {
+export default function HostName() {
+
   return (
     <Box
       sx={{
         flexGrow: 1,
         width: "90%",
-        mt:'16px'
+        mt: "16px",
       }}
     >
-      <Grid container spacing={{ xs: "20px" }} columns={{ xs: 12 }}>
+      <Grid container spacing={{ xs: "0"}} columns={{ xs: 12 }}>
         {Array.from(Array(6)).map((_, index) => (
-          <Grid item xs={4} key={index}>
+          <Grid item xs={6} key={index} sx={{border:'none'}}>
             <Item>
-              <Avatar src={findFlagUrlByCountryName("Germany")} />
-              <Typography sx={{ pl: "16px" }}>Germany</Typography>
+                <TextField fullWidth  id="fullWidth" size="small" />
             </Item>
           </Grid>
         ))}

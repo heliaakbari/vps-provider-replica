@@ -61,8 +61,17 @@ export default function LeftSideBar(props) {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <AddBoxOutlinedIcon />
+            <ListItemButton
+            disableTouchRipple
+              sx={{
+                cursor: "default",
+                "&.MuiButtonBase-root": {
+                  background: "rgba(44, 94, 255, 1)",
+                  color: "white",
+                },
+              }}
+            >
+              <AddBoxOutlinedIcon sx={{ color: "white" }} />
               <ListItemText sx={{ ml: "8px" }} primary="Instances" />
             </ListItemButton>
           </ListItem>

@@ -48,15 +48,6 @@ const theme = createTheme({
     borderRadius: "4px",
   },
   components: {
-    MuiButton: {
-      styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          backgroundColor: "rgba(0, 205, 130, 1)",
-        },
-      },
-    },
     MuiSvgIcon: {
       styleOverrides: {
         // Name of the slot
