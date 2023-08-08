@@ -6,122 +6,123 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-
-
-
-function createData(index,cpu, memory, storage, speed, monthly, hourly) {
-  return { index,cpu, memory, storage, speed, monthly, hourly };
-}
-
-const rows = [
-  createData(0,1, 1, 15, 1, 4.5),
-  createData(1,2, 2, 30, 1, 8.95),
-  createData(2,4, 4, 60, 1, 19.95),
-  createData(3,6, 8, 120, 1, 36.95),
-];
-
-export default function PlanList() {
-
-    const [selectedPlan, setSelectedPlan] = React.useState(0);
-
-    const handleChange = (event) => {
-      setSelectedPlan(event.target.value);
-      console.log("x")
-    };
-
-  return (
-    <TableContainer>
-      <Table
-        sx={{
-          width: "100%",
-          "& .MuiTableCell-root": {
-            borderBottom: "1px solid rgba(0,0,0,0.1)",
-            height: 56,
-            p: 0,
-          },
-        }}
-        aria-label="simple table"
-      >
-        <TableHead>
-          <TableRow>
-            <TableCell
-              align="center"
-              sx={{
-                width: "12%",
-              }}
-            ></TableCell>
-            <TableCell
-              sx={{
-                width: "18%",
-              }}
-            >
-              CPU
-            </TableCell>
-            <TableCell
-              sx={{
-                width: "18%",
-              }}
-            >
-              Memory
-            </TableCell>
-            <TableCell
-              sx={{
-                width: "18%",
-              }}
-            >
-              Storage
-            </TableCell>
-            <TableCell
-              sx={{
-                width: "18%",
-              }}
-            >
-              Connection speed
-            </TableCell>
-            <TableCell
-              sx={{
-                width: "16%",
-              }}
-            >
-              Monthly price
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-                "& .MuiTableCell-root": {
-                  fontWeight: 400,
-                },
-              }}
-            >
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import Tooltip from "@mui/material/Tooltip";
+import Box from "@mui/material/Box";
+export default function PlanList({
+  regionPlans,
+  setSelectedPlan,
+  selectedPlan,
+}) {
+  if (regionPlans) {
+    return (
+      <TableContainer>
+        <Table
+          sx={{
+            width: "100%",
+            "& .MuiTableCell-root": {
+              borderBottom: "1px solid rgba(0,0,0,0.1)",
+              height: 56,
+              p: 0,
+            },
+          }}
+          aria-label="simple table"
+        >
+          <TableHead>
+            <TableRow>
               <TableCell
                 align="center"
-                component="th"
-                scope="row"
                 sx={{
-                  w: "100%",
+                  width: "15%",
+                }}
+              ></TableCell>
+              <TableCell
+                sx={{
+                  width: "19%",
                 }}
               >
-                <Radio
-                  checked={selectedPlan == row.index}
-                  name="radio-buttons"
-                  onChange={handleChange}
-                  value={row.index}
-                />
+                CPU
               </TableCell>
-              <TableCell>{row.cpu} CPU</TableCell>
-              <TableCell>{row.memory} GB</TableCell>
-              <TableCell>{row.storage} GB</TableCell>
-              <TableCell>Up to {row.speed} Gbps</TableCell>
-              <TableCell>$ {row.monthly}</TableCell>
+              <TableCell
+                sx={{
+                  width: "20%",
+                }}
+              >
+                Memory
+              </TableCell>
+              <TableCell
+                sx={{
+                  width: "27%",
+                }}
+              >
+                Connection speed
+              </TableCell>
+              <TableCell
+                sx={{
+                  width: "19%",
+                }}
+              >
+                Monthly price
+              </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+          </TableHead>
+          <TableBody>
+            {Array.from(regionPlans).map((plan, index) => (
+              <TableRow
+                key={index}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  "& .MuiTableCell-root": {
+                    fontWeight: 400,
+                  },
+                }}
+              >
+                <TableCell
+                  align="center"
+                  component="th"
+                  scope="row"
+                  sx={{
+                    w: "100%",
+                  }}
+                >
+                  <Radio
+                    checked={selectedPlan == index}
+                    name="radio-buttons"
+                    onClick={setSelectedPlan(index)}
+                    value={index}
+                    key={index}
+                  />
+                </TableCell>
+                <TableCell>{plan.cpu_cores} CPU</TableCell>
+                <TableCell>{plan.memory_size_in_GB} GB</TableCell>
+                <TableCell>
+                  Up to {plan.connection_up_bound_speed} Gbps
+                </TableCell>
+                <TableCell sx={{ display: "flex", alignItems: "center" }}>
+                  <Box>$ {plan.monthly_price}</Box>
+                  <Tooltip
+                    title={plan.hourly_price + "/hour"}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                    followCursor
+                  >
+                    <InfoOutlinedIcon
+                      sx={{
+                        ml: "20px",
+                        p: 0,
+                        color: "rgba(158, 158, 158, 1)",
+                        "&:hover": { color: "black" },
+                      }}
+                    />{" "}
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
 }

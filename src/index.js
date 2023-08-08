@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import Initializer from "./initializer";
 import {
   Button,
   createTheme,
@@ -45,7 +46,7 @@ const theme = createTheme({
   },
   spacing: 8,
   shape: {
-    borderRadius: "4px",
+    borderRadius: 1,
   },
   components: {
     MuiSvgIcon: {
@@ -62,7 +63,7 @@ const theme = createTheme({
       styleOverrides: {
         // Name of the slot
         root: {
-          borderRadius: "4px",
+          borderRadius: 4,
         },
       },
     },
@@ -70,11 +71,12 @@ const theme = createTheme({
   
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <React.StrictMode>
-      <App />
+      <Initializer />
     </React.StrictMode>
   </ThemeProvider>
 );

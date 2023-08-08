@@ -18,9 +18,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const drawerWidth = 315;
 
-export default function DeploySection({planPrice=10}) {
-  const [totalPrice, setTotalPrice] = useState(planPrice);
-  const [quantity, setQuantity] = useState(1);
+export default function DeploySection({ planPrice = 10, profile, quantity, setQuantity, deployFunc,enableIPv4,setEnableIPv4}) {
 
   function addQuantity() {
     if (quantity <= 9) {
@@ -78,11 +76,13 @@ export default function DeploySection({planPrice=10}) {
             justifyContent: "center",
             alignItems: "center",
             border: "1px solid rgba(189, 189, 189, 1)",
-            borderRadius: "4px",
+            borderRadius: 4,
           }}
         >
           <AddIcon sx={{ m: "8px" }} />
-          <Typography sx={{ width: "93px" }}>$ 125.50</Typography>
+          <Typography sx={{ width: "93px" }}>
+            $ {profile ? profile.balance : "0.00"}
+          </Typography>
         </Box>
         <Divider orientation="vertical" variant="middle" flexItem />
         <Avatar sx={{ bgcolor: "#BDBDBD", mr: "32px", ml: "16px" }}>
@@ -137,7 +137,9 @@ export default function DeploySection({planPrice=10}) {
         </div>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox size="medium" />}
+            control={
+              <Checkbox size="medium" onChange={(e) => setEnableIPv4(e)} />
+            }
             label="Enable IPv4"
             sx={{
               my: "16px",
@@ -157,7 +159,7 @@ export default function DeploySection({planPrice=10}) {
             m: 0,
             my: "24px",
             bgcolor: "background.paper",
-            borderRadius: 1,
+            borderRadius: 4,
           }}
         >
           <Typography sx={{ fontSize: "20px", fontWeight: "500" }}>
@@ -175,7 +177,7 @@ export default function DeploySection({planPrice=10}) {
               $
             </Typography>
             <Typography sx={{ fontSize: "24px", fontWeight: "500", px: "4px" }}>
-              {planPrice * quantity}
+              {(planPrice * quantity).toFixed(2)}
             </Typography>
             <Typography
               sx={{
@@ -196,11 +198,17 @@ export default function DeploySection({planPrice=10}) {
           }}
         >
           <Button
+            onClick={deployFunc}
             sx={{
               width: "243px",
               height: "40px",
               boxShadow: "none",
-              "&.MuiButton-root": { background:  "rgba(0, 205, 130, 1)" , color:'white' },
+
+              "&.MuiButton-root": {
+                background: "rgba(0, 205, 130, 1)",
+                color: "white",
+                borderRadius: "4px",
+              },
             }}
           >
             DEPLOY NOW

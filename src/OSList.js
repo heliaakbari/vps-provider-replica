@@ -11,32 +11,29 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import LaptopWindowsIcon from "@mui/icons-material/LaptopWindows";
 
-const Item = styled(Button)(({}) => ({
+const Item = styled(Box)(({}) => ({
   textAlign: "center",
   border: "1px solid rgba(0, 0, 0, 0.12)",
-  borderRadius: "4px",
+  borderRadius: 4,
   padding: 0,
-  display:'flex',
-  flexDirection:'column',
+  display: "flex",
+  flexDirection: "column",
   height: "133px",
   fontWeight: 500,
   fontSize: "16px",
-  alignItems: "center",
-  justifyContent: "center",
-  alignItems:'center',
+  justifyContent: "space-evenly",
   padding: "0 16px",
   width: "100%",
   textTransform: "capitalize",
   color: "black",
 }));
 
-export default function OS() {
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+export default function OS({ operatingSystems, setSelectedOS, OSfamily ,selectedOS}) {
+  let families = new Set(
+    operatingSystems.map((operatingSystems) => operatingSystems.family)
+  );
 
   return (
     <Box
@@ -47,36 +44,53 @@ export default function OS() {
       }}
     >
       <Grid container spacing={{ xs: "20px" }} columns={{ xs: 12 }}>
-        {Array.from(Array(6)).map((_, index) => (
+        {Array.from(families).map((item, index) => (
           <Grid item xs={4} key={index}>
-            <Item>
+            <Item
+              sx={{
+                width: "100%",
+                border:
+                  item == OSfamily
+                    ? "2px solid rgba(44, 94, 255, 1)"
+                    : "1px solid rgba(189, 189, 189, 1)",
+              }}
+            >
               <Box
                 item
                 sx={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  flex:'left',
-                  justifyContent:'space-between'
+                  width: "100%",
                 }}
               >
-                <Avatar src={findFlagUrlByCountryName("Germany")} />
-                <Typography sx={{ pl: "16px" }}>Germany</Typography>
+                <Avatar sx={{ ".MuiAvatar-fallback": { display: "none" } }}>
+                  <LaptopWindowsIcon sx={{ color: "white", width: "100%" }} />
+                </Avatar>
+                <Typography sx={{ pl: "16px" }}>{item}</Typography>
               </Box>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">Age</InputLabel>
+              <Box sx={{ width: "100%" }}>
+                <FormControl fullWidth size="small" key={selectedOS}>
                   <Select
-                  fullWidth
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={age}
-                    label="Age"
-                    onChange={handleChange}
+                    fullWidth
+                    labelId={index}
+                    value={
+                      item == OSfamily ? operatingSystems[selectedOS].version : "Select version"
+                    }
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value="Select version" disabled>
+                      Select version
+                    </MenuItem>
+                    {Array.from(operatingSystems).map((option, i) =>
+                      option.family == item ? (
+                        <MenuItem
+                          value={option.version}
+                          onClick={setSelectedOS(i)}
+                        >
+                          {option.version}
+                        </MenuItem>
+                      ) : null
+                    )}
                   </Select>
                 </FormControl>
               </Box>

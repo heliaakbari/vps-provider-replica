@@ -139,7 +139,7 @@ export default function LeftSideBar(props) {
           disablePadding
           sx={{
             border: "1px solid rgba(189, 189, 189, 1)",
-            borderRadius: "4px",
+            borderRadius: 4,
             height: 40,
           }}
         >
@@ -153,7 +153,7 @@ export default function LeftSideBar(props) {
           disablePadding
           sx={{
             border: "1px solid rgba(189, 189, 189, 1)",
-            borderRadius: "4px",
+            borderRadius: 4,
             mt: "4px",
             height: 40,
           }}

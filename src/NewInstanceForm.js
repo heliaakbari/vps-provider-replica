@@ -7,9 +7,23 @@ import PlanList from "./PlanList";
 import Regions from "./RegionList";
 import Typography from "@mui/material/Typography";
 import OS from "./OSList";
-import HostName from "./HostName"
+import HostName from "./HostName";
 
-export default function NewInstanceForm() {
+export default function NewInstanceForm({
+  regions,
+  operatingSystems,
+  newSelectedRegion,
+  regionPlans,
+  setSelectedPlan,
+  selectedPlan,
+  selectedOS,
+  setSelectedOS,
+  OSfamily,
+  quantity,
+  region,
+  plan,
+  hostNames,
+}) {
   return (
     <Container
       disableGutters
@@ -26,7 +40,7 @@ export default function NewInstanceForm() {
         sx={{
           bgcolor: "white",
           m: "97px 0 33px 33px",
-          borderRadius: "4px",
+          borderRadius: 4,
           display: "flex",
           flexDirection: "column",
           flexGrow: 1,
@@ -43,7 +57,7 @@ export default function NewInstanceForm() {
             Region
           </Typography>
         </Box>
-        <Regions />
+        <Regions region={region} regions={regions} newSelectedRegion={newSelectedRegion} />
         <Box
           sx={{
             width: "100%",
@@ -53,7 +67,12 @@ export default function NewInstanceForm() {
             Plan
           </Typography>
         </Box>
-        <PlanList />
+        <PlanList
+          regionPlans={regionPlans}
+          setSelectedPlan={setSelectedPlan}
+          selectedPlan={selectedPlan}
+          selectedOS={selectedOS}
+        />
         <Box
           sx={{
             width: "100%",
@@ -63,7 +82,12 @@ export default function NewInstanceForm() {
             Operating System
           </Typography>
         </Box>
-        <OS />
+        <OS
+          operatingSystems={operatingSystems}
+          setSelectedOS={setSelectedOS}
+          selectedOS={selectedOS}
+          OSfamily={OSfamily}
+        />
         <Box
           sx={{
             width: "100%",
@@ -73,7 +97,14 @@ export default function NewInstanceForm() {
             Hostname
           </Typography>
         </Box>
-        <HostName />
+        <HostName
+          key={quantity}
+          OS={OSfamily}
+          quantity={quantity}
+          region={region}
+          plan={plan}
+          hostArrays={hostNames}
+        />
       </Box>
     </Container>
   );
