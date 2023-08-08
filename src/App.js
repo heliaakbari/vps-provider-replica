@@ -16,7 +16,6 @@ function App({ regions, userInfo, operatingSystems }) {
   const [enableIPv4,setEnableIPv4State]= useState(false)
   let planPrice = 5;
   let totalPrice = 5;
-  const hostNames = new Array(quantity);
   if (allRegionPlans) {
     planPrice = allRegionPlans[selectedPlan].monthly_price;
     totalPrice = quantity*planPrice;
@@ -53,9 +52,7 @@ function App({ regions, userInfo, operatingSystems }) {
           Plan: allRegionPlans[selectedPlan],
           operatingSystem: operatingSystems[selectedOS],
           IPv4: { state: enableIPv4 },
-          hostNamesList : hostNames,
           totalPrice: totalPrice.toFixed(2),
-
         },
         null,
         "\t"
@@ -91,7 +88,6 @@ function App({ regions, userInfo, operatingSystems }) {
             quantity={quantity}
             region={selectedRegion}
             plan={allRegionPlans[selectedPlan]}
-            hostNames={hostNames}
           />
           <DeploySection
             profile={userInfo}

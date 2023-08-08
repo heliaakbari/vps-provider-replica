@@ -8,8 +8,7 @@ import TextField from "@mui/material/TextField";
 
 const Item = styled(Box)(({}) => ({
   textAlign: "center",
-  borderRadius: '4px',
-  margin: "8px",
+  borderRadius: "4px",
   display: "flex",
   flexDirection: "column",
   fontWeight: 500,
@@ -23,29 +22,25 @@ const Item = styled(Box)(({}) => ({
   color: "black",
 }));
 
-export default function HostName({ OS, quantity, region, plan, hostArrays }) {
+export default function HostName({
+  OS,
+  quantity,
+  region,
+  plan,
+}) {
   let defaultVal = `${OS}-${region.name}-${plan.memory_size_in_GB}gb`;
-  hostArrays = new Array(quantity);
-  Array.from(hostArrays).map((_, index) => (
-    hostArrays[index] = (index == 0 ? defaultVal: defaultVal+'-'+index)
-  ));
-  function hello(){
-    console.log("hello")
-  }
-  function changedValue(e){
-    hostArrays[e.target.id]=e.target.value
-  }
+
   return (
     <Box
       sx={{
         flexGrow: 1,
         width: "90%",
         mt: "16px",
-        p:0
+        p: 0,
       }}
-      key={[OS, region.name, plan.memory_size_in_GB,quantity]}
+      key={[OS, region.name, plan.memory_size_in_GB]}
     >
-      <Grid container spacing={{ xs: "20px" }} columns={{ xs: 12 }} onChange={hello}>
+      <Grid container spacing={{ xs: 2 }} columns={{ xs: 12 }}>
         {Array.from(Array(quantity)).map((_, index) => (
           <Grid item xs={6} key={index} sx={{ border: "none" }}>
             <Item>
@@ -56,7 +51,6 @@ export default function HostName({ OS, quantity, region, plan, hostArrays }) {
                 defaultValue={
                   index == 0 ? defaultVal : defaultVal + "-" + index
                 }
-                onChange={changedValue}
               />
             </Item>
           </Grid>

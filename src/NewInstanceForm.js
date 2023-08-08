@@ -22,7 +22,6 @@ export default function NewInstanceForm({
   quantity,
   region,
   plan,
-  hostNames,
 }) {
   return (
     <Container
@@ -57,7 +56,11 @@ export default function NewInstanceForm({
             Region
           </Typography>
         </Box>
-        <Regions region={region} regions={regions} newSelectedRegion={newSelectedRegion} />
+        <Regions
+          region={region}
+          regions={regions}
+          newSelectedRegion={newSelectedRegion}
+        />
         <Box
           sx={{
             width: "100%",
@@ -97,14 +100,12 @@ export default function NewInstanceForm({
             Hostname
           </Typography>
         </Box>
-        <HostName
-          key={quantity}
-          OS={OSfamily}
-          quantity={quantity}
-          region={region}
-          plan={plan}
-          hostArrays={hostNames}
-        />
+          <HostName
+            OS={OSfamily}
+            quantity={quantity}
+            region={region}
+            plan={plan}
+          />
       </Box>
     </Container>
   );
