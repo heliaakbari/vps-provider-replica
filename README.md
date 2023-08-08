@@ -1,5 +1,7 @@
 npm dependencies:
+<hr />
 ├── @emotion/react@11.11.1
+<hr />
 ├── @emotion/styled@11.11.0
 ├── @mui/icons-material@5.14.3
 ├── @mui/material@5.14.3
