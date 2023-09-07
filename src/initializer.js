@@ -11,6 +11,7 @@ export default function Initializer(){
   const [allOS,setAllOS]=useState(null);
 
   function loadProfile(res){
+    console.log(res.data.firstname)
     setUserInfo(res.data);
   }
   function loadOS(res){
@@ -21,17 +22,16 @@ export default function Initializer(){
     setAllRegions(res.data)
   }
   function errorHandling(error){
-    alert(error);
+    
   }
   if(! userInfo){
-  axios.get("https://assignment.abrnoc.com/user-info").then(loadProfile).catch(errorHandling);
-  axios.get("https://assignment.abrnoc.com/regions").then(loadRegion).catch(errorHandling);
+  axios.get("/JSONS/user-info.json").then(loadProfile).catch(errorHandling);
+  axios.get("/JSONS/regions.json").then(loadRegion).catch(errorHandling);
   axios
-    .get("https://assignment.abrnoc.com/operating_systems")
+    .get("/JSONS/operating-systems.json")
     .then(loadOS)
     .catch(errorHandling);
   }
-
   if(userInfo && allRegions && allOS){
   return(
     <App regions={allRegions} userInfo={userInfo} operatingSystems={allOS}/>

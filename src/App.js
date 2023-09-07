@@ -33,7 +33,7 @@ function App({ regions, userInfo, operatingSystems }) {
   const newSelectedRegion = (item) => () => {
     setSelectedRegion(item.item);
     axios
-      .get(`https://assignment.abrnoc.com/plans?region=${item.item.name}`)
+      .get(`/JSONS/plans/${item.item.name}.json`)
       .then(loadPlans)
       .catch(catcherror);
   };
@@ -66,7 +66,7 @@ function App({ regions, userInfo, operatingSystems }) {
 
   if (!allRegionPlans) {
     axios
-      .get(`https://assignment.abrnoc.com/plans?region=${selectedRegion.name}`)
+      .get(`/JSONS/plans/${selectedRegion.name}.json`)
       .then(loadPlans)
       .catch(catcherror);
   } else {

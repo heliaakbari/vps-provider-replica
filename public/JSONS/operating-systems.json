@@ -1,0 +1,27 @@
+
+[
+    {"family":"Ubuntu",
+    "version":"22.04"},
+    {"family":"Ubuntu",
+    "version":"20.04"},
+    {"family":"Fedora",
+    "version":"38"},
+    {"family":"Fedora",
+    "version":"37"},
+    {"family":"Debian",
+    "version":"12"},
+    {"family":"Debian",
+    "version":"11"},
+    {"family":"Debian",
+    "version":"10"},
+    {"family":"CentOS",
+    "version":"Stream 9"},
+    {"family":"CentOS",
+    "version":"Stream 8"},
+    {"family":"CentOS",
+    "version":"7"},
+    {"family":"Rocky",
+    "version":"9"},
+    {"family":"Rocky",
+    "version":"8"}
+]

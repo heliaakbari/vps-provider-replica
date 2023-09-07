@@ -1,0 +1,30 @@
+[
+    {
+        "cpu_cores":2,
+        "memory_size_in_GB":40,
+        "monthly_price":3.85,
+        "hourly_price":0.006,
+        "connection_up_bound_speed":1
+    },
+    {
+        "cpu_cores":3,
+        "memory_size_in_GB":80,
+        "monthly_price":7.05,
+        "hourly_price":0.011,
+        "connection_up_bound_speed":2
+    },
+    {
+        "cpu_cores":4,
+        "memory_size_in_GB":160,
+        "monthly_price":13.10,
+        "hourly_price":0.021,
+        "connection_up_bound_speed":3
+    },
+    {
+        "cpu_cores":8,
+        "memory_size_in_GB":240,
+        "monthly_price":24.70,
+        "hourly_price":0.041,
+        "connection_up_bound_speed":4
+    }
+]

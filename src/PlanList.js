@@ -98,7 +98,7 @@ export default function PlanList({
                 <TableCell>
                   Up to {plan.connection_up_bound_speed} Gbps
                 </TableCell>
-                <TableCell sx={{ display: "flex", alignItems: "center" }}>
+                <TableCell sx={{ display: "flex", alignItems: "center", justifyContent:"space-between",}}>
                   <Box>$ {plan.monthly_price}</Box>
                   <Tooltip
                     title={plan.hourly_price + "/hour"}
@@ -114,6 +114,7 @@ export default function PlanList({
                         p: 0,
                         color: "rgba(158, 158, 158, 1)",
                         "&:hover": { color: "black" },
+                        marginRight:"50px" 
                       }}
                     />{" "}
                   </Tooltip>

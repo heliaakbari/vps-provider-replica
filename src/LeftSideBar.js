@@ -101,11 +101,10 @@ export default function LeftSideBar(props) {
       <List sx={{ pb: "20px", px: "20px" }}>
         <ListItemButton onClick={handleClick}>
           <AttachMoneyOutlinedIcon />
-
           <ListItemText sx={{ ml: "8px" }} primary="Billing" />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {!open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={!open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItemButton disablePadding>
               <ListItemText sx={{ ml: "30px" }} primary="Invoices" />
