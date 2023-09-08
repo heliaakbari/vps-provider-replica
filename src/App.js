@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import axios from "axios";
+import SimpleDialog from "./SimpleDialog";
 
 function App({ regions, userInfo, operatingSystems }) {
   const [selectedRegion, setSelectedRegion] = useState(regions[0]);
@@ -14,6 +15,7 @@ function App({ regions, userInfo, operatingSystems }) {
   const [quantity, setQuantity] = useState(1);
   const [allRegionPlans, setRegionPlans] = useState(null);
   const [enableIPv4,setEnableIPv4State]= useState(false)
+  const [open, setOpen] = useState(false);
   let planPrice = 5;
   let totalPrice = 5;
   if (allRegionPlans) {
@@ -42,22 +44,7 @@ function App({ regions, userInfo, operatingSystems }) {
     setSelectedPlanState(index);
   };
   function deployNow() {
-    console.log(
-      "%cExtracted Information",
-      "color: #007acc;",
-      JSON.stringify(
-        {
-          userInfo,
-          Region: selectedRegion,
-          Plan: allRegionPlans[selectedPlan],
-          operatingSystem: operatingSystems[selectedOS],
-          IPv4: { state: enableIPv4 },
-          totalPrice: totalPrice.toFixed(2),
-        },
-        null,
-        "\t"
-      )
-    );
+    setOpen(true)
   }
 
   const setSelectedOS = (index) => () => {
@@ -73,6 +60,17 @@ function App({ regions, userInfo, operatingSystems }) {
     return (
       <div className="App">
         <CssBaseline />
+        <SimpleDialog open={open} onClose={setOpen} content={
+        {
+          userInfo,
+          Region: selectedRegion,
+          Plan: allRegionPlans[selectedPlan],
+          operatingSystem: operatingSystems[selectedOS],
+          quantity: quantity,
+          IPv4: { state: enableIPv4 },
+          totalPrice: totalPrice.toFixed(2),
+        }
+      } />
         <Box sx={{ display: "flex" }}>
           <LeftSideBar side="left" />
           <NewInstanceForm

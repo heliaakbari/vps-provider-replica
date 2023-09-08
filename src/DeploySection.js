@@ -1,9 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import CloudzyLogo from "./CloudzyLogo";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -18,8 +16,15 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 
 const drawerWidth = 315;
 
-export default function DeploySection({ planPrice = 10, profile, quantity, setQuantity, deployFunc,enableIPv4,setEnableIPv4}) {
-
+export default function DeploySection({
+  planPrice = 10,
+  profile,
+  quantity,
+  setQuantity,
+  deployFunc,
+  enableIPv4,
+  setEnableIPv4,
+}) {
   function addQuantity() {
     if (quantity <= 9) {
       setQuantity(quantity + 1);
