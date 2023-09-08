@@ -52,7 +52,7 @@ export default function LeftSideBar(props) {
         <CloudzyLogo />
       </Toolbar>
       <Divider />
-      <Box sx={{ pt: "40px", px: "20px" }}>
+      <Box sx={{ pt: "20px", px: "20px" }}>
         <List>
           <ListItem disablePadding>
             <ListItemButton>
